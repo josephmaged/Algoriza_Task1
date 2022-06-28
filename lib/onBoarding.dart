@@ -2,6 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OnBoarding extends StatelessWidget {
+  String? headerText;
+  String? subText;
+  String? img;
+  bool isActive;
+
+  OnBoarding({Key? key, required this.headerText, required this.subText, required this.img, required this.isActive}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +17,12 @@ class OnBoarding extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              'assets/images/onBoarding1.jpeg',
+              img!,
               width: MediaQuery.of(context).size.width - 50,
             ),
-            const Text(
-              'Get food delivery to your doorstep asap',
-              style: TextStyle(
+            Text(
+              headerText!,
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold
               ),
@@ -25,9 +31,9 @@ class OnBoarding extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Text(
-              'We have young and professional delivery team that will bring your food as soon as possible to your doorstep',
-              style: TextStyle(
+            Text(
+              subText!,
+              style: const TextStyle(
                 color: Colors.black54,
                 fontSize: 16
               ),

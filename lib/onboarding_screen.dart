@@ -1,11 +1,32 @@
+import 'package:algoriza_task1/const/const.dart';
 import 'package:algoriza_task1/onBoarding.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class OnBoardingScreen extends StatelessWidget {
+import 'const/imgPath.dart';
+import 'const/string.dart';
+
+class OnBoardingScreen extends StatefulWidget {
+  @override
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+}
+
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final controller = PageController(
     initialPage: 0,
   );
+
+  bool firstPage = true;
+  bool secondPage = false;
+
+  _onPageViewChange(int page) {
+    if(page == 0) {
+      firstPage = true;
+      secondPage = false;
+    }else {
+      firstPage = false;
+      secondPage = true;
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +42,7 @@ class OnBoardingScreen extends StatelessWidget {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-                      primary: const Color(0XFFf8f3e7),
+                      primary: secondaryColor,
                     ),
                     onPressed: null,
                     child: const Text(
@@ -39,7 +60,15 @@ class OnBoardingScreen extends StatelessWidget {
               height: MediaQuery.of(context).size.height - 300,
               child: PageView(
                 controller: controller,
-                children: [OnBoarding()],
+                onPageChanged: (int page){
+                  setState(() {
+                    _onPageViewChange(page);
+                  });
+                },
+                children: [
+                  OnBoarding(headerText: headerTextBoarding1, subText: subTextBoarding1, img: imgBoarding1, isActive: firstPage),
+                  OnBoarding(headerText: headerTextBoarding2, subText: subTextBoarding2, img: imgBoarding2, isActive: secondPage),
+                ],
               ),
             ),
             const SizedBox(height: 5),
@@ -51,7 +80,7 @@ class OnBoardingScreen extends StatelessWidget {
                   width: 20,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
-                    color: const Color(0XFFdec091),
+                    color:  firstPage ? primaryColor : secondaryColor,
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -60,16 +89,7 @@ class OnBoardingScreen extends StatelessWidget {
                   width: 20,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
-                    color: const Color(0XFFeaeaea),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Container(
-                  height: 5,
-                  width: 20,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(2),
-                    color: const Color(0XFFeaeaea),
+                    color: secondPage ? primaryColor : secondaryColor,
                   ),
                 ),
               ],
@@ -83,7 +103,7 @@ class OnBoardingScreen extends StatelessWidget {
                 child: const Text('Get Started'),
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  primary: const Color(0XFF51afab),
+                  primary: primaryColor,
                 ),
               ),
             ),
@@ -93,17 +113,12 @@ class OnBoardingScreen extends StatelessWidget {
               children: [
                 const Text(
                   'Don\'t have an account? ',
-                  style: TextStyle(
-                    fontSize: 18
-                  ),
+                  style: TextStyle(fontSize: 18),
                 ),
                 GestureDetector(
                   child: const Text(
                     'Sign Up',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Color(0XFF51afab)
-                    ),
+                    style: TextStyle(fontSize: 18, color: primaryColor),
                   ),
                 )
               ],
