@@ -24,15 +24,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          Image.asset(
-            imgBackground!,
-            fit: BoxFit.cover,
-            height: MediaQuery.of(context).size.height,
-            color: Colors.white.withOpacity(0.5),
-            colorBlendMode: BlendMode.modulate,
+          Wrap(
+            children: [
+              Image.asset(
+                imgBackground!,
+                fit: BoxFit.cover,
+                color: Colors.white.withOpacity(0.5),
+                colorBlendMode: BlendMode.modulate,
+              ),
+            ],
           ),
           SingleChildScrollView(
             child: Container(
@@ -103,17 +105,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       style: TextStyle(color: lightBlackTextColor, fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 5),
-                    Container(
-                      height: 50,
-                      alignment: Alignment.center,
-                      child: InternationalPhoneNumberInput(
-                        onInputChanged: (PhoneNumber value) {},
-                        ignoreBlank: false,
-                        textFieldController: phoneController,
-                        initialValue: number,
-                        formatInput: true,
-                        inputBorder: InputBorder.none,
-                      ),
+                    Wrap(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: lightColor),
+                          ),
+                          child: InternationalPhoneNumberInput(
+                            onInputChanged: (PhoneNumber value) {},
+                            onInputValidated: (bool value) {},
+                            ignoreBlank: false,
+                            textFieldController: phoneController,
+                            initialValue: number,
+                            autoValidateMode: AutovalidateMode.onUserInteraction,
+                            formatInput: true,
+                            inputBorder: InputBorder.none,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 20),
                     const Text(
