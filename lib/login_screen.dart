@@ -1,6 +1,5 @@
 import 'package:algoriza_task1/const/const.dart';
 import 'package:algoriza_task1/reusable/reusableButton.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
@@ -36,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           SingleChildScrollView(
             child: Container(
-              margin: const EdgeInsets.only(top: 200),
+              margin: const EdgeInsets.only(top: 250),
               color: Colors.white,
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
@@ -76,9 +75,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 20),
                       InternationalPhoneNumberInput(
                         onInputChanged: (PhoneNumber value) {},
-                        onInputValidated: (bool value) {
-                          print(value);
-                        },
                         ignoreBlank: false,
                         autoValidateMode: AutovalidateMode.onUserInteraction,
                         textFieldController: phoneController,
@@ -88,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 25),
                       ReusableButton(
                         onPressed: () {},
-                        text: 'Sign iIn',
+                        text: 'Sign In',
                         color: primaryColor,
                       ),
                       const SizedBox(height: 25),
@@ -129,7 +125,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             const SizedBox(width: 25),
                             const Text(
                               'Sign In with google',
-                              style: TextStyle(color: primaryColor),
+                              style: TextStyle(
+                                color: primaryColor,
+                                fontSize: 16,
+                              ),
                             ),
                           ],
                         ),
@@ -157,10 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Text(
                         loginText!,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: lightColor,
-                          fontSize: 16
-                        ),
+                        style: const TextStyle(color: lightColor, fontSize: 16),
                       )
                     ],
                   ),
