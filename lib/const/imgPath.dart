@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
-String? imgBoarding1 = 'assets/images/onBoarding1.jpeg';
-String? imgBoarding2 = 'assets/images/onBoarding2.jpeg';
-String? imgBackground = 'assets/images/Background.jpeg';
+String? imgBoarding1 = 'assets/images/onBoarding1.png';
+String? imgBoarding2 = 'assets/images/onBoarding2.png';
+String? imgBackground = 'assets/images/Background.png';
