@@ -5,3 +5,4 @@ String? subTextBoarding1 = 'We have young and professional delivery team that wi
 
 String? headerTextBoarding2 = 'Buy Any Food from your favorite restaurant';
 String? subTextBoarding2 = 'We ate constantly adding your favourite restaurant the territory and around your area carefully selected';
+String? loginText = 'Use the application according to policy rules.Any kinds of violations will be subject to sanctions.';

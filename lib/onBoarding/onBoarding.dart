@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../const/const.dart';
+
 class OnBoarding extends StatelessWidget {
   String? headerText;
   String? subText;
   String? img;
-  bool isActive;
 
-  OnBoarding({Key? key, required this.headerText, required this.subText, required this.img, required this.isActive}) : super(key: key);
+  OnBoarding({Key? key, required this.headerText, required this.subText, required this.img}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,8 @@ class OnBoarding extends StatelessWidget {
               headerText!,
               style: const TextStyle(
                 fontSize: 24,
-                fontWeight: FontWeight.bold
+                fontWeight: FontWeight.bold,
+                color: blackTextColor
               ),
               textAlign: TextAlign.center,
             ),
@@ -34,8 +36,8 @@ class OnBoarding extends StatelessWidget {
             Text(
               subText!,
               style: const TextStyle(
-                color: Colors.black54,
-                fontSize: 16
+                color: lightBlackTextColor,
+                fontSize: 16,
               ),
               textAlign: TextAlign.center,
             ),

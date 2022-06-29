@@ -1,4 +1,6 @@
-import 'package:algoriza_task1/onboarding_screen.dart';
+import 'package:algoriza_task1/login_screen.dart';
+import 'package:algoriza_task1/onBoarding/onboarding_screen.dart';
+import 'package:algoriza_task1/register_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -54,6 +56,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '7Kave',
+      routes: {
+        LoginScreen.ID: (context) => LoginScreen(),
+        RegisterScreen.ID: (context) => RegisterScreen(),
+      },
       home: OnBoardingScreen(),
       );
   }
