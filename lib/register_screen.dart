@@ -106,10 +106,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Container(
                       height: 50,
                       alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: lightColor),
-                      ),
                       child: InternationalPhoneNumberInput(
                         onInputChanged: (PhoneNumber value) {},
                         ignoreBlank: false,

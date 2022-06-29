@@ -76,10 +76,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       InternationalPhoneNumberInput(
                         onInputChanged: (PhoneNumber value) {},
                         ignoreBlank: false,
-                        autoValidateMode: AutovalidateMode.onUserInteraction,
                         textFieldController: phoneController,
                         initialValue: number,
                         formatInput: true,
+
                       ),
                       const SizedBox(height: 25),
                       ReusableButton(
