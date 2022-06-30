@@ -32,7 +32,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 Image.asset(
                   imgBackground!,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fitWidth,
+                  width: double.infinity,
                   color: Colors.white.withOpacity(0.5),
                   colorBlendMode: BlendMode.modulate,
                 ),
@@ -219,18 +220,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ],
                       ),
                       const SizedBox(height: 25),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            registerText!,
-                            style: const TextStyle(color: lightColor, fontSize: 16),
-                          ),
-                          Text(
-                            termsAndCondition!,
-                            style: const TextStyle(color: primaryColor, fontSize: 16),
-                          ),
-                        ],
+                      Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              registerText!,
+                              style: const TextStyle(color: lightColor, fontSize: 16),
+                            ),
+                            Text(
+                              termsAndCondition!,
+                              style: const TextStyle(color: primaryColor, fontSize: 16),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

@@ -35,95 +35,104 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      primary: secondaryColor,
-                    ),
-                    onPressed: () => Navigator.of(context).pushReplacementNamed(RegisterScreen.ID),
-                    child: const Text(
-                      'Skip',
-                      style: TextStyle(
-                        color: blackTextColor,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        primary: secondaryColor,
+                      ),
+                      onPressed: () => Navigator.of(context).pushReplacementNamed(RegisterScreen.ID),
+                      child: const Text(
+                        'Skip',
+                        style: TextStyle(
+                          color: blackTextColor,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Image.asset(
-              'assets/images/logo.png',
-              width: 100,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height - 300,
-              child: PageView(
-                controller: controller,
-                onPageChanged: (int page) {
-                  setState(() {
-                    _onPageViewChange(page);
-                  });
-                },
+              Image.asset(
+                'assets/images/logo.png',
+                width: 100,
+              ),
+              Wrap(
                 children: [
-                  OnBoarding(headerText: headerTextBoarding1, subText: subTextBoarding1, img: imgBoarding1),
-                  OnBoarding(headerText: headerTextBoarding2, subText: subTextBoarding2, img: imgBoarding2),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: MediaQuery.of(context).size.height - 300,
+                      maxWidth: MediaQuery.of(context).size.width
+                    ),
+                    child: PageView(
+                      controller: controller,
+                      onPageChanged: (int page) {
+                        setState(() {
+                          _onPageViewChange(page);
+                        });
+                      },
+                      children: [
+                        OnBoarding(headerText: headerTextBoarding1, subText: subTextBoarding1, img: imgBoarding1),
+                        OnBoarding(headerText: headerTextBoarding2, subText: subTextBoarding2, img: imgBoarding2),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-            ),
-            const SizedBox(height: 5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 5,
-                  width: 20,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(2),
-                    color: firstPage ? primaryColor : secondaryColor,
+              const SizedBox(height: 5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 5,
+                    width: 20,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(2),
+                      color: firstPage ? primaryColor : secondaryColor,
+                    ),
                   ),
-                ),
-                const SizedBox(width: 10),
-                Container(
-                  height: 5,
-                  width: 20,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(2),
-                    color: secondPage ? primaryColor : secondaryColor,
+                  const SizedBox(width: 10),
+                  Container(
+                    height: 5,
+                    width: 20,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(2),
+                      color: secondPage ? primaryColor : secondaryColor,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            ReusableButton(
-              onPressed: () => Navigator.of(context).pushReplacementNamed(LoginScreen.ID),
-              text: 'Get Started',
-              color: primaryColor,
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Don\'t have an account? ',
-                  style: TextStyle(fontSize: 18, color: blackTextColor),
-                ),
-                GestureDetector(
-                  onTap: () => Navigator.of(context).pushReplacementNamed(RegisterScreen.ID),
-                  child: const Text(
-                    'Sign Up',
-                    style: TextStyle(fontSize: 18, color: primaryColor),
+                ],
+              ),
+              const SizedBox(height: 20),
+              ReusableButton(
+                onPressed: () => Navigator.of(context).pushReplacementNamed(LoginScreen.ID),
+                text: 'Get Started',
+                color: primaryColor,
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Don\'t have an account? ',
+                    style: TextStyle(fontSize: 18, color: blackTextColor),
                   ),
-                )
-              ],
-            )
-          ],
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).pushReplacementNamed(RegisterScreen.ID),
+                    child: const Text(
+                      'Sign Up',
+                      style: TextStyle(fontSize: 18, color: primaryColor),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

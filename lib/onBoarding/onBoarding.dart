@@ -17,9 +17,12 @@ class OnBoarding extends StatelessWidget {
         padding: const EdgeInsets.only(right: 20,left: 20),
         child: Column(
           children: [
-            Image.asset(
-              img!,
-              width: MediaQuery.of(context).size.width - 50,
+            Expanded(
+              flex: 1,
+              child: Image.asset(
+                img!,
+                width: MediaQuery.of(context).size.width - 50,
+              ),
             ),
             Text(
               headerText!,
