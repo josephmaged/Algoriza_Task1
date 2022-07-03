@@ -1,7 +1,7 @@
 import 'package:algoriza_task1/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 
 import 'const/const.dart';
 import 'const/imgPath.dart';
@@ -17,15 +17,18 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final TextEditingController phoneController = TextEditingController();
   String initialCountry = 'EG';
-  PhoneNumber number = PhoneNumber(isoCode: 'EG');
+  bool _validate = false;
+  final TextEditingController _text = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-        onTap: () =>  FocusScope.of(context).unfocus(),
+        onTap: (){
+        FocusScope.of(context).unfocus();
+          _text.text.isEmpty ? _validate = true : _validate = false;
+      },
         child: Stack(
           children: [
             Wrap(
@@ -108,26 +111,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: TextStyle(color: lightBlackTextColor, fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 5),
-                      Wrap(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
+                      TextField(
+                        keyboardType: TextInputType.phone,
+                        controller: _text,
+                        decoration: InputDecoration(
+                          labelText: 'Enter Phone Number',
+                          errorText: _validate ? 'Please enter Phone Number' : null,
+                          errorBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.red),
                               borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: lightColor),
-                            ),
-                            child: InternationalPhoneNumberInput(
-                              onInputChanged: (PhoneNumber value) {},
-                              onInputValidated: (bool value) {},
-                              ignoreBlank: false,
-                              textFieldController: phoneController,
-                              initialValue: number,
-                              autoValidateMode: AutovalidateMode.onUserInteraction,
-                              formatInput: true,
-                              inputBorder: InputBorder.none,
-                            ),
                           ),
-                        ],
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: primaryColor),
+                              borderRadius: BorderRadius.circular(10)
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: lightColor),
+                              borderRadius: BorderRadius.circular(10)
+                          ),
+                          prefixIcon: CountryCodePicker(
+                            initialSelection: initialCountry,
+                            favorite: const ['EG'],
+                            showFlag: true,
+                            showCountryOnly: false,
+                            onChanged: (CountryCode? code){
+                              code = code;
+                            },
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 20),
                       const Text(
